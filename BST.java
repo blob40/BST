@@ -2,6 +2,7 @@
 //12/9/25
 //Binary Search Tree Implementation, creating insert, find, remove and toString methods
 
+import java.util.ArrayList;
 
 class BST {
     Node root;
@@ -77,21 +78,28 @@ class BST {
       
 
         //no children
-        if (key < current.key){
-            while (current.key != key){
-                above = current;
-                current = current.left;
-            }
-        } else if (key > current.key){
-            while (current.key != key){
-                above = current;
-                current = current.right;
+        while(key != current.key){
+            if (key < current.key){
+            if (current.key != key){
+                    above = current;
+                    current = current.left;
+                }
+            } else if (key > current.key){
+                if (current.key != key){
+                    above = current;
+                    current = current.right;
+                }
             }
         }
-
+        System.out.println("found "+current.key + " with parent "+above.key);
         if(current.key == key && current.left == null && current.right == null){
             System.out.println("removing node with no children " + current.key + " above is " + above.key);
-            current = null;
+            if (above.left == current){
+                above.left = null;
+            } else {
+                above.right = null;
+            }
+            above=null;
             return true;
         } 
 
@@ -100,12 +108,12 @@ class BST {
         //one child 
         if(current.key == key && current.left != null&& current.right == null){
             System.out.println("removing node with one child " + current.key );
-            above = current.left;
+            above.left = current.left;
             System.out.println("new node is " + above.key);
         }
          if(current.key == key && current.left == null && current.right != null){
             System.out.println("removing node with one child " + current.key );
-            above = current.right;
+            above.right = current.right;
             System.out.println("new node is " + above.key);
         }
 
@@ -114,25 +122,30 @@ class BST {
         if(current.key == key && current.left != null && current.right != null){
            Node child = current.left;
            Node parent = current;
-
            while (child.right != null){
             child = child.right;
             parent = child;
            }
-           child.right = parent.left;
-           
+            current.key = child.key;
+            parent.left = child.left;
 
         }
-
-        //node.left == toremove.right
-       
         return true;
     }
 
-
-    //TODO
     public String toString(){
-        return "";
+        ArrayList <Integer> list = new ArrayList<Integer>();
+        toString(root, list);
+        return list.toString();
+    }
+
+    private void toString(Node n, ArrayList<Integer> list){
+        if (n == null){
+            return;
+        }
+        toString(n.left, list);
+        list.add(n.key);
+        toString(n.right, list);
     }
 
 
@@ -145,11 +158,18 @@ class BST {
         tree.insert(8);
         tree.insert(3);
        
-        tree.printTree();
       BST tree2 = new BST ();
         tree2.insert(10);
         tree2.insert(5);
-        tree2.remove(10); 
+        tree2.insert(11);
+        tree2.insert(12);
+        tree2.insert(6);
+        tree2.insert(3);
+        tree2.remove(6); 
+        tree2.remove(11);
+        tree2.remove(5); 
+        System.out.println(tree2.toString());
+        tree2.printTree();
     }
 
 
