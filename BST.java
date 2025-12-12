@@ -93,7 +93,6 @@ class BST {
         }
         System.out.println("found "+current.key + " with parent "+above.key);
         if(current.key == key && current.left == null && current.right == null){
-            System.out.println("removing node with no children " + current.key + " above is " + above.key);
             if (above.left == current){
                 above.left = null;
             } else {
@@ -107,14 +106,10 @@ class BST {
 
         //one child 
         if(current.key == key && current.left != null&& current.right == null){
-            System.out.println("removing node with one child " + current.key );
             above.left = current.left;
-            System.out.println("new node is " + above.key);
         }
          if(current.key == key && current.left == null && current.right != null){
-            System.out.println("removing node with one child " + current.key );
             above.right = current.right;
-            System.out.println("new node is " + above.key);
         }
 
         //two children
@@ -157,7 +152,7 @@ class BST {
         tree.insert(4);
         tree.insert(8);
         tree.insert(3);
-        System.out.println(tree2.toString());
+        System.out.println(tree.toString());
        
       BST tree2 = new BST ();
         tree2.insert(10);
