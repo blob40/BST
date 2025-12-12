@@ -157,6 +157,7 @@ class BST {
         tree.insert(4);
         tree.insert(8);
         tree.insert(3);
+        System.out.println(tree2.toString());
        
       BST tree2 = new BST ();
         tree2.insert(10);
@@ -165,6 +166,7 @@ class BST {
         tree2.insert(12);
         tree2.insert(6);
         tree2.insert(3);
+        System.out.println(tree2.toString());
         tree2.remove(6); 
         tree2.remove(11);
         tree2.remove(5); 
