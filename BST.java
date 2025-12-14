@@ -13,7 +13,8 @@ class BST {
     }
 
    
-
+//pre -condition: The tree is a valid binary search tree
+//post-condition: inserts the key into the tree and maintains the proper rules in a BST
     void insert(int key){
         if (root == null){
             root = new Node(key);
@@ -44,7 +45,8 @@ class BST {
 }
 
 
-
+//pre-condition: The tree is a valid binary search tree
+//post-condition: Returns true if the key is found in the tree, false if not
     boolean find(int key){
             return find(key, root);
         }
@@ -65,7 +67,9 @@ class BST {
             return false;
         }
 
-
+        
+        //)Pre-condition: The tree is a valid binary search tree.
+        //Post-condition: If the key is found in the tree and it is remooved
     boolean remove(int key){
         Node above = root;
         Node current = root;
@@ -91,7 +95,7 @@ class BST {
                 }
             }
         }
-        System.out.println("found "+current.key + " with parent "+above.key);
+       
         if(current.key == key && current.left == null && current.right == null){
             if (above.left == current){
                 above.left = null;
@@ -122,25 +126,34 @@ class BST {
             parent = child;
            }
             current.key = child.key;
-            parent.left = child.left;
 
+             if (parent.left == child) {
+                parent.left = child.left;
+            } else {
+                parent.right = child.left;
+            }
         }
         return true;
     }
 
     public String toString(){
-        ArrayList <Integer> list = new ArrayList<Integer>();
-        toString(root, list);
-        return list.toString();
+        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        toString(root, 0, list);
+        String result = "";
+        for (ArrayList<Integer> lists : list) {
+            result += lists.toString() + "\n";
+        }
+        return result;
     }
 
-    private void toString(Node n, ArrayList<Integer> list){
-        if (n == null){
-            return;
+    private void toString(Node n, int num, ArrayList<ArrayList<Integer>> list) {
+        if (n == null) return;
+        if (list.size() <= num) {
+            list.add(new ArrayList<>());
         }
-        toString(n.left, list);
-        list.add(n.key);
-        toString(n.right, list);
+        list.get(num).add(n.key);
+        toString(n.left, num + 1, list);
+        toString(n.right, num + 1, list);
     }
 
 
@@ -148,10 +161,9 @@ class BST {
 
     public static void main(String[] args) {
         BST tree = new BST ();
-        tree.insert(6);
-        tree.insert(4);
+        tree.insert(5);
+        tree.insert(2);
         tree.insert(8);
-        tree.insert(3);
         System.out.println(tree.toString());
        
       BST tree2 = new BST ();
@@ -161,12 +173,11 @@ class BST {
         tree2.insert(12);
         tree2.insert(6);
         tree2.insert(3);
-        System.out.println(tree2.toString());
-        tree2.remove(6); 
+       // tree2.remove(6); 
         tree2.remove(11);
-        tree2.remove(5); 
+       // tree2.remove(5);
         System.out.println(tree2.toString());
-        tree2.printTree();
+        //tree2.printTree();
     }
 
 
