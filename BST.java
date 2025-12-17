@@ -156,28 +156,103 @@ class BST {
         toString(n.right, num + 1, list);
     }
 
+    private void rotateLeft(Node subRoot, Node prev){
+
+        if (subRoot == null || subRoot.right == null){
+            return;
+        }
+
+        if(prev == null){
+            root = subRoot.right;
+            subRoot.right = root.left;
+            root.left = subRoot;
+           
+        } else if (prev.left == subRoot){
+            Node x = subRoot.right;
+            prev.left = x;
+            subRoot.right = x.left;
+            x.left = subRoot;
+        } else {
+            Node t = subRoot.right;  
+            prev.right = t;
+            subRoot.right = t.left;
+            t.left = subRoot;
+           
+        }
+           
+        }
+    
+
+    private void rotateRight(Node subRoot, Node prev){
+         if (subRoot == null || subRoot.left == null){
+            return;
+        }
+
+        if(prev == null){
+            root = subRoot.left;
+            subRoot.left = root.right;
+            root.right = subRoot;
+        }  else if (prev.left == subRoot ){
+            Node x = subRoot.left;
+            prev.left = x;
+            subRoot.left = x.right;
+            x.right = subRoot;
+        } else {
+            Node t = subRoot.left;  
+            prev.right = t;
+            subRoot.right = t.left;
+            t.left = subRoot;
+        }
+    }
+
+
+    //Pre-condition: The tree is a valid binary search tree.
+    //Post-condition: The tree is balanced.
+    private int balance(Node node){
+        //height of right - height of left
+        return -1;
+    }
+
+    //Pre-condition: The tree is a valid binary search tree.
+    //Post-condition: Returns the height of the tree.
+    private int height(Node node){
+        if (node == null){
+            return -1;
+        } else {
+            if (height(node.left)>height(node.right)){
+            return height(node.left) + 1; } else {
+                return height (node.right) +1;
+            }
+        }
+    }
 
 
 
     public static void main(String[] args) {
-        BST tree = new BST ();
-        tree.insert(5);
-        tree.insert(2);
-        tree.insert(8);
-        System.out.println(tree.toString());
+        // BST tree = new BST ();
+        // tree.insert(5);
+        // tree.insert(6);
+        // tree.insert(8);
+        //  tree.insert(67);
+        // tree.insert(35);
+        // System.out.print(tree.height(tree.root));
+        // tree.printTree();
+        // tree.rotateLeft(tree.root, null);
+        // tree.printTree();
        
       BST tree2 = new BST ();
         tree2.insert(10);
         tree2.insert(5);
         tree2.insert(11);
-        tree2.insert(12);
+        tree2.insert(13);
+        tree2.insert(14);
         tree2.insert(6);
         tree2.insert(3);
        // tree2.remove(6); 
-        tree2.remove(11);
+        tree2.printTree();
+        tree2.rotateLeft(tree2.root.right, tree2.root);
        // tree2.remove(5);
-        System.out.println(tree2.toString());
-        //tree2.printTree();
+        tree2.printTree();
     }
 
 
