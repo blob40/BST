@@ -210,7 +210,10 @@ class BST {
     //Post-condition: The tree is balanced.
     private int balance(Node node){
         //height of right - height of left
-        return -1;
+        if (node == null){
+        return -1;} else {
+            return height(node.right) - height(node.left);
+        }
     }
 
     //Pre-condition: The tree is a valid binary search tree.
@@ -229,16 +232,19 @@ class BST {
 
 
     public static void main(String[] args) {
-        // BST tree = new BST ();
-        // tree.insert(5);
-        // tree.insert(6);
-        // tree.insert(8);
-        //  tree.insert(67);
-        // tree.insert(35);
-        // System.out.print(tree.height(tree.root));
-        // tree.printTree();
-        // tree.rotateLeft(tree.root, null);
-        // tree.printTree();
+         BST tree = new BST ();
+         tree.insert(5);
+         tree.insert(3);
+        tree.insert(2);
+         tree.insert(6);
+         tree.insert(8);
+          tree.insert(67);
+        tree.insert(68);
+         tree.insert(35);
+         System.out.println("height from root " + tree.height(tree.root));
+        System.out.println("balance from root " + tree.balance(tree.root));
+        System.out.println("balance from left " + tree.balance(tree.root.left) + " should be -1");
+         tree.printTree();
        
       BST tree2 = new BST ();
         tree2.insert(10);
