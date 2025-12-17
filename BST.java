@@ -243,7 +243,7 @@ class BST {
          tree.insert(35);
          System.out.println("height from root " + tree.height(tree.root));
         System.out.println("balance from root " + tree.balance(tree.root));
-        System.out.println("balance from left " + tree.balance(tree.root.left) + " should be -1");
+        System.out.println("balance from left " + tree.balance(tree.root.left) + " /.,should be -1");
          tree.printTree();
        
       BST tree2 = new BST ();
