@@ -109,11 +109,18 @@ class BST {
 
 
         //one child 
-        if(current.key == key && current.left != null&& current.right == null){
-            above.left = current.left;
-        }
-         if(current.key == key && current.left == null && current.right != null){
-            above.right = current.right;
+        if(current.key == key && ((current.left != null && current.right == null) || (current.left == null && current.right != null))){
+            Node child;
+            if (current.left != null) {
+                child = current.left;
+            } else {
+                child = current.right;
+            }
+            if (above.left == current) {
+                above.left = child;
+            } else {
+                above.right = child;
+            }
         }
 
         //two children
@@ -259,6 +266,15 @@ class BST {
         tree2.rotateLeft(tree2.root.right, tree2.root);
        // tree2.remove(5);
         tree2.printTree();
+
+
+        BST tree3 = new BST ();
+        tree3.insert(5);
+        tree3.insert(3);
+        tree3.insert(4);
+        tree3.printTree();
+        tree3.remove(3);
+        tree3.printTree();
     }
 
 
