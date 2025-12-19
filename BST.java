@@ -272,39 +272,17 @@ class BST {
         tree3.printTree();
         tree3.remove(3);
         tree3.printTree();
+
+        AVL tree4 = new AVL();
+        tree4.insert(5);
+        tree4.insert(3);
+        tree4.insert(4);
         
     }
 
 
 
-     class AVL extends BST{
-        public void insert(int key){
-            super.insert(key);
-            balanceTree(root);
-        }
-        
-        public void remove(int key){
-            super.remove(key);
-            balanceTree(root);
-            
-        }
-
-        private void balanceTree(Node n){
-            if (n == null) {
-                return;
-            }
-            balanceTree(n.left);
-            balanceTree(n.right);
-            if (balance(n) > 1){
-                rotateLeft(n, null);
-            } else if (balance(n) < -1){
-                rotateRight(n, null);
-            }
-
-        }
-     }
-
-//Add the following functions to your BST
+    //Add the following functions to your BST
  //Please use this code to verify your tree integrity
     public boolean isBSTOrNot() {
         return isBSTOrNot(this.root, Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -384,7 +362,8 @@ class BST {
         this.prev = prev;
         this.str = str;
     }
-   };
+   }
  
 
 }
+
