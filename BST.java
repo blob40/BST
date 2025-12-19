@@ -70,14 +70,14 @@ class BST {
         
         //)Pre-condition: The tree is a valid binary search tree.
         //Post-condition: If the key is found in the tree and it is remooved
-    boolean remove(int key){
+    void remove(int key){
         Node above = root;
         Node current = root;
         
 
         //If key is not found
         if (find(key) == false || root == null){
-            return false;
+            return;
         }
       
 
@@ -103,7 +103,7 @@ class BST {
                 above.right = null;
             }
             above=null;
-            return true;
+            return;
         } 
 
 
@@ -140,7 +140,7 @@ class BST {
                 parent.right = child.left;
             }
         }
-        return true;
+        return;
     }
 
     public String toString(){
@@ -239,19 +239,16 @@ class BST {
 
 
     public static void main(String[] args) {
-         BST tree = new BST ();
+         BST tree = new BST();
          tree.insert(5);
          tree.insert(3);
         tree.insert(2);
          tree.insert(6);
          tree.insert(8);
-          tree.insert(67);
+        tree.insert(67);
         tree.insert(68);
-         tree.insert(35);
-         System.out.println("height from root " + tree.height(tree.root));
-        System.out.println("balance from root " + tree.balance(tree.root));
-        System.out.println("balance from left " + tree.balance(tree.root.left) + " /.,should be -1");
-         tree.printTree();
+        tree.insert(35);
+        tree.printTree();
        
       BST tree2 = new BST ();
         tree2.insert(10);
@@ -275,9 +272,37 @@ class BST {
         tree3.printTree();
         tree3.remove(3);
         tree3.printTree();
+        
     }
 
 
+
+     class AVL extends BST{
+        public void insert(int key){
+            super.insert(key);
+            balanceTree(root);
+        }
+        
+        public void remove(int key){
+            super.remove(key);
+            balanceTree(root);
+            
+        }
+
+        private void balanceTree(Node n){
+            if (n == null) {
+                return;
+            }
+            balanceTree(n.left);
+            balanceTree(n.right);
+            if (balance(n) > 1){
+                rotateLeft(n, null);
+            } else if (balance(n) < -1){
+                rotateRight(n, null);
+            }
+
+        }
+     }
 
 //Add the following functions to your BST
  //Please use this code to verify your tree integrity
