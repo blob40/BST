@@ -129,8 +129,8 @@ class BST {
            Node child = current.left;
            Node parent = current;
            while (child.right != null){
-            child = child.right;
             parent = child;
+            child = child.right;
            }
             current.key = child.key;
 
@@ -163,7 +163,7 @@ class BST {
         toString(n.right, num + 1, list);
     }
 
-    private void rotateLeft(Node subRoot, Node prev){
+    protected void rotateLeft(Node subRoot, Node prev){
 
         if (subRoot == null || subRoot.right == null){
             return;
@@ -190,7 +190,7 @@ class BST {
         }
     
 
-    private void rotateRight(Node subRoot, Node prev){
+    protected void rotateRight(Node subRoot, Node prev){
          if (subRoot == null || subRoot.left == null){
             return;
         }
@@ -215,10 +215,10 @@ class BST {
 
     //Pre-condition: The tree is a valid binary search tree.
     //Post-condition: The tree is balanced.
-    private int balance(Node node){
+    protected int balance(Node node){
         //height of right - height of left
         if (node == null){
-        return -1;} else {
+        return 0;} else {
             return height(node.right) - height(node.left);
         }
     }
@@ -273,10 +273,10 @@ class BST {
         tree3.remove(3);
         tree3.printTree();
 
-        AVL tree4 = new AVL();
-        tree4.insert(5);
-        tree4.insert(3);
-        tree4.insert(4);
+       // AVL tree4 = new AVL();
+       // tree4.insert(5);
+      //  tree4.insert(3);
+       // tree4.insert(4);
         
     }
 

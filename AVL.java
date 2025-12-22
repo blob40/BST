@@ -10,15 +10,18 @@
             
         }
 
+
+        //G back up to the root and balance the tree
+        //FIX THIS
         private void balanceTree(Node n){
             if (n == null) {
                 return;
             }
             balanceTree(n.left);
             balanceTree(n.right);
-            if (balanceTree(n) > 1){
+            if (balance(n) > 1){
                 super.rotateLeft(n, null);
-            } else if (balanceTree(n) < -1){
+            } else if (balance(n) < -1){
                 super.rotateRight(n, null);
             }
 
