@@ -124,7 +124,6 @@ class BST {
         }
 
         //two children
-        //TODO
         if(current.key == key && current.left != null && current.right != null){
            Node child = current.left;
            Node parent = current;
@@ -239,7 +238,7 @@ class BST {
 
 
     public static void main(String[] args) {
-         BST tree = new BST();
+      /*    BST tree = new BST();
          tree.insert(5);
          tree.insert(3);
         tree.insert(2);
@@ -248,9 +247,9 @@ class BST {
         tree.insert(67);
         tree.insert(68);
         tree.insert(35);
-        tree.printTree();
+        tree.printTree(); */
        
-      BST tree2 = new BST ();
+       /* BST tree2 = new BST ();
         tree2.insert(10);
         tree2.insert(5);
         tree2.insert(11);
@@ -262,22 +261,35 @@ class BST {
         tree2.printTree();
         tree2.rotateLeft(tree2.root.right, tree2.root);
        // tree2.remove(5);
-        tree2.printTree();
+        tree2.printTree(); */
 
 
-        BST tree3 = new BST ();
+     /*  BST tree3 = new BST ();
         tree3.insert(5);
         tree3.insert(3);
+        tree3.insert(2);
         tree3.insert(4);
-        tree3.printTree();
-        tree3.remove(3);
-        tree3.printTree();
+        tree3.insert(1);
+        tree3.printTree(); */ 
 
-       // AVL tree4 = new AVL();
-       // tree4.insert(5);
-      //  tree4.insert(3);
-       // tree4.insert(4);
-        
+        AVL tree4 = new AVL();
+        tree4.insert(7);
+        tree4.insert(4);
+        tree4.insert(8);
+        tree4.insert(2);
+        tree4.insert(3);
+        tree4.printTree();
+
+        AVL tree5 = new AVL();
+        tree5.insert(5);
+        tree5.insert(3);
+        tree5.insert(2);
+        tree5.insert(1);
+        tree5.insert(4);
+        tree5.printTree();
+
+
+    
     }
 
 
