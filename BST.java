@@ -206,8 +206,8 @@ class BST {
         } else {
             Node t = subRoot.left;  
             prev.right = t;
-            subRoot.right = t.left;
-            t.left = subRoot;
+            subRoot.left = t.right;
+            t.right = subRoot;
         }
     }
 
@@ -264,31 +264,22 @@ class BST {
         tree2.printTree(); */
 
 
-     /*  BST tree3 = new BST ();
+       BST tree3 = new BST ();
         tree3.insert(5);
         tree3.insert(3);
         tree3.insert(2);
         tree3.insert(4);
         tree3.insert(1);
-        tree3.printTree(); */ 
+        tree3.printTree();  
+
 
         AVL tree4 = new AVL();
-        tree4.insert(7);
-        tree4.insert(4);
-        tree4.insert(8);
-        tree4.insert(2);
+        tree4.insert(5);
         tree4.insert(3);
+        tree4.insert(2);
+        tree4.insert(4);
+        tree4.insert(1);
         tree4.printTree();
-
-        AVL tree5 = new AVL();
-        tree5.insert(5);
-        tree5.insert(3);
-        tree5.insert(2);
-        tree5.insert(1);
-        tree5.insert(4);
-        tree5.printTree();
-
-
     
     }
 
